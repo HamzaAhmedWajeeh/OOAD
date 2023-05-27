@@ -1,0 +1,10 @@
+add-migration initial
+
+update-database
+
+
+Microsoft.EntityFrameworkCore.SqlServer
+
+microsoft.entityframeworkcore.tools
+
+Microsoft.EntityFrameworkCore
