@@ -1,11 +1,11 @@
-<!-- profile.php -->
+
 <?php
     $title = 'Profile';
     ob_start();
 ?>
 
 <div>
-    <h2>Your Profile Content Goes Here</h2>
+    <h2>Yourr Profile Content Goes Here</h2>
     <!-- Add your profile content here -->
 </div>
 
