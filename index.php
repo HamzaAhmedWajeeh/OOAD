@@ -1,5 +1,5 @@
 <?php
-// index.php
+
 
 require_once 'BusinessLogicLayer/Redirector.php';
 
