@@ -1,5 +1,5 @@
 <?php
-// Redirector.php
+// Redirector.php.
 
 class Redirector {
     public static function redirect($location) {
