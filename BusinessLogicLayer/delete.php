@@ -10,7 +10,7 @@
 <?php
 
 include('db.php');
-$id = $_GET['id'];
+$id = $_GET['id']; 
 
 $query = "delete from emailtb where id = '$id'";
 
