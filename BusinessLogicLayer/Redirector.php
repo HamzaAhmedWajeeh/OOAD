@@ -3,7 +3,7 @@
 
 class Redirector {
     public static function redirect($location) {
-        // Redirect to the specified location
+        // Redirect to  specified location
         header("Location: $location");
         exit();
     }
