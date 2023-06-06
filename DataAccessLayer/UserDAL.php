@@ -8,10 +8,10 @@ class UserDAL {
     }
 
     // Create a new user in the database
-    public function createUser($username, $email, $password, $verificationCode,$selectedOptions) {
+    public function createUser($username, $email, $password, $verificationCode,$serializedOptions) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO user_tb (User_Email,Area_of_Law, User_Password, verification_code,username) VALUES ('$email', '$selectedOptions', '$hashedPassword', '$verificationCode','$username')";
+        $sql = "INSERT INTO user_tb (User_Email,Area_of_Law, User_Password, verification_code,username) VALUES ('$email', '$serializedOptions', '$hashedPassword', '$verificationCode','$username')";
         return $this->db->query($sql);
     }
 
@@ -47,7 +47,6 @@ class UserDAL {
         }
         return 'failure';
     }
-    
 
     public function getUserByEmailAndPassword($email, $password) {
         $email = $this->db->real_escape_string($email);
@@ -69,8 +68,65 @@ class UserDAL {
         return null;
     }
     
+  public function updatePassword($email, $hashedPassword) {
+    // Prepare the SQL statement with a placeholder for the email
+    $checkSql = "SELECT User_Email FROM user_tb WHERE User_Email = '$email'";
     
+    // Execute the check query
+    $checkResult = $this->db->query($checkSql);
     
+    // Check if the row exists
+    if ($checkResult && $checkResult->num_rows > 0) {
+        // Row exists, proceed with the update query
+        $updateSql = "UPDATE user_tb SET User_Password = '$hashedPassword' WHERE User_Email = '$email'";
+
+        // Execute the update query
+        $updateResult = $this->db->query($updateSql);
+
+        if ($updateResult) {
+            // Password updated successfully
+            
+            return true;
+        } else {
+            // Password update failed
+           
+            return false;
+        }
+    } else {
+        // Row does not exist, email not found
+        
+        return false;
+    }
+}
+
+ //calender work
+
+public function saveEvent($userId, $title, $date, $description) {
+    $title = $this->db->real_escape_string($title);
+    $date = $this->db->real_escape_string($date);
+    $description = $this->db->real_escape_string($description);
+    $sql = "INSERT INTO events_tb (user_id, title, date, description) VALUES ('$userId', '$title', '$date', '$description')";
+    if ($this->db->query($sql) === TRUE) {
+        return true; // Event saved successfully
+    } else {
+        return "Error saving event: " . $this->db->error; // Return error message
+    }
+}
+
+public function getEventsByUserId($userId) {
+    $userId = $this->db->real_escape_string($userId);
+    $sql = "SELECT * FROM events_tb WHERE user_id = '$userId'";
+    $result = $this->db->query($sql);
+    $totalrow = mysqli_num_rows($result);
+
+    if ($totalrow) {
+        $events = $result->fetch_all(MYSQLI_ASSOC);
     
+
+    return $events;
+    }
+}
+
+
 }
 ?>

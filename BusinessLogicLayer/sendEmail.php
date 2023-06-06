@@ -1,8 +1,9 @@
 <?php
 include('saveemail.php');
 // Retrieve form data
-
-$recipientEmail = $_POST['recipient_email'];
+if(isset($_POST['btnsend'])){
+    
+    $recipientEmail = $_POST['recipient_email'];
 $subject = $_POST['subject'];
 $message = $_POST['message'];
 $attachment = $_FILES['attachment'];
@@ -29,7 +30,7 @@ $emailBody .= chunk_split(base64_encode(file_get_contents($attachment['tmp_name'
 $emailBody .= "--boundary123--";
 
 // Send the email
-$mailSent = mail($recipientEmail, $emailSubject, $emailBody, $headers);
+$mailSent = mail($recipientEmail, $emailSubject, $emailBody, "aliyankhan6446@gmail.com");
 
 // Check if the email was sent successfully
 if ($mailSent) {
@@ -40,5 +41,8 @@ if ($mailSent) {
     echo "Failed to send email.";
 }
 
-
+}
+else{
+   echo"not"; 
+}
 ?>

@@ -3,9 +3,9 @@
 class Database {
     // Database connection configuration
     private $host = 'localhost';
-    private $username = 'root';
-    private $password = '';
-    private $database = 'cms_lawyer';
+    private $username = 'lawsjgfe_hamzaadnan';
+    private $password = 'qwerty@hamza123adnan';
+    private $database = 'lawsjgfe_cmslawyer';
     
 
     // Database connection
@@ -35,5 +35,4 @@ class Database {
 
     
 }
-
 ?>

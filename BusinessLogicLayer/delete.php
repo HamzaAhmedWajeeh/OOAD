@@ -9,8 +9,8 @@
 
 <?php
 
-include('db.php');
-$id = $_GET['id']; 
+ $con = mysqli_connect("localhost","lawsjgfe_hamzaadnan","qwerty@hamza123adnan","lawsjgfe_cmslawyer");
+$id = $_GET['id'];
 
 $query = "delete from emailtb where id = '$id'";
 
@@ -18,7 +18,7 @@ $row = mysqli_query($con,$query);
 
 if($row)
 {
- header('Location: ../PresentationLayer/pages/mailbox/sent.php');
+ header('Location: http://cms.lawseer.co/PresentationLayer/sent.php');
 	}
 	else {
 		echo"Data Not Deleted";
