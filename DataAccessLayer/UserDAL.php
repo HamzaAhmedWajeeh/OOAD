@@ -47,6 +47,7 @@ class UserDAL {
         }
         return 'failure';
     }
+    
 
     public function getUserByEmailAndPassword($email, $password) {
         $email = $this->db->real_escape_string($email);
